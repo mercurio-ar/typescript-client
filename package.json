@@ -1,0 +1,58 @@
+{
+  "name": "@mercurio-ar/typescript-client",
+  "version": "1.0.0",
+  "description": "typescript client for mercurio api",
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "tslint --fix ./src/**/*",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test -- --coverage"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.ts": [
+      "tslint --fix",
+      "git add"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.6.1",
+    "husky": "^1.0.1",
+    "jest": "^23.6.0",
+    "jshint": "^2.9.6",
+    "lint-staged": "^7.3.0",
+    "tslint": "^5.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mercurio-ar/typescript-client.git"
+  },
+  "author": "Sebastian Gonzalez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mercurio-ar/typescript-client/issues"
+  },
+  "homepage": "https://github.com/mercurio-ar/typescript-client#readme",
+  "dependencies": {
+    "@mercurio-ar/model": "file:../model",
+    "axios": "^0.18.0",
+    "querystring": "^0.2.0",
+    "typescript": "^3.1.1"
+  }
+}
