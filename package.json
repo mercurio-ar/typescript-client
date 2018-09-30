@@ -2,8 +2,10 @@
   "name": "@mercurio-ar/typescript-client",
   "version": "1.0.0",
   "description": "typescript client for mercurio api",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc",
     "lint": "tslint --fix ./src/**/*",
     "test": "jest --no-cache"
   },
@@ -48,6 +50,7 @@
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
     "tslint-react": "^3.6.0",
+    "typescript": "^3.1.1",
     "typescript-babel-jest": "^1.0.5"
   },
   "repository": {
@@ -62,8 +65,6 @@
   "homepage": "https://github.com/mercurio-ar/typescript-client#readme",
   "dependencies": {
     "@mercurio-ar/model": "file:../model",
-    "axios": "^0.18.0",
-    "querystring": "^0.2.0",
-    "typescript": "^3.1.1"
+    "axios": "^0.18.0"
   }
 }

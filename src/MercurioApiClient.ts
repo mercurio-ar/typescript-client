@@ -2,8 +2,6 @@ import { IVisualization } from '@mercurio-ar/model';
 
 import { AxiosInstance } from 'axios';
 
-import * as querystring from 'querystring';
-
 import { ISearchQuery, ISearchResult } from './';
 
 
@@ -36,7 +34,8 @@ export class MercurioApiClient implements IMercurioApiClient {
     }
 
     public search(searchQuery: ISearchQuery): Promise<ISearchResult[]> {
-        const path = `${this.searchEndpoint()}?${querystring.stringify(searchQuery)}`;
+        const searchParams = new URLSearchParams(searchQuery as any);
+        const path = `${this.searchEndpoint()}?${searchParams.toString()}`;
         return this.http.get(path).then(axiosResponse => axiosResponse.data);
     }
 
