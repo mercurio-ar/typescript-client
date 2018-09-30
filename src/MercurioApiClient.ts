@@ -4,8 +4,16 @@ import { AxiosInstance } from 'axios';
 
 import * as querystring from 'querystring';
 
-import { IMercurioApiClient, ISearchQuery, ISearchResult } from './';
+import { ISearchQuery, ISearchResult } from './';
 
+
+export interface IMercurioApiClient {
+    createVisualizationFromSearchResult: (searchResult: ISearchResult) => Promise<IVisualization>;
+    deleteVisualization: (visualization: IVisualization) => Promise<void>;
+    fetchVisualizations: () => Promise<IVisualization[]>
+    search: (searchQuery: ISearchQuery) => Promise<ISearchResult[]>
+    addSearchResultToVisualization: (visualization: IVisualization, searchResult: ISearchResult) => Promise<IVisualization>
+}
 
 export class MercurioApiClient implements IMercurioApiClient {
 
