@@ -1,4 +1,4 @@
-import { IVisualization } from '@mercurio-ar/model';
+import { IVisualization, Visualization } from '@mercurio-ar/model';
 
 import { AxiosInstance } from 'axios';
 
@@ -20,7 +20,8 @@ export class MercurioApiClient implements IMercurioApiClient {
     public createVisualizationFromSearchResult(searchResult: ISearchResult): Promise<IVisualization> {
         return this.http.post(this.visualizationEndpoint(), {
             searchResult
-        }).then(axiosResponse => axiosResponse.data);
+        }).then(axiosResponse => axiosResponse.data)
+            .then(Visualization.from);
     }
 
     public deleteVisualization(visualization: IVisualization): Promise<void> {
@@ -30,7 +31,8 @@ export class MercurioApiClient implements IMercurioApiClient {
 
     public fetchVisualizations(): Promise<IVisualization[]> {
         return this.http.get(this.visualizationEndpoint())
-            .then(axiosResponse => axiosResponse.data);
+            .then(axiosResponse => axiosResponse.data)
+            .then(visualizations => visualizations.map(Visualization.from));
     }
 
     public search(searchQuery: ISearchQuery): Promise<ISearchResult[]> {
@@ -43,7 +45,8 @@ export class MercurioApiClient implements IMercurioApiClient {
         const path = this.visualizationEndpoint(visualization);
         return this.http.put(path, {
             searchResult
-        }).then(axiosResponse => axiosResponse.data);
+        }).then(axiosResponse => axiosResponse.data)
+            .then(Visualization.from);
     }
 
     private visualizationEndpoint(visualization?: IVisualization) {
