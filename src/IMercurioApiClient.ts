@@ -7,7 +7,7 @@ export interface ISearchResult {
     displayName: string;
 }
 
-export interface IMercurioApi {
+export interface IMercurioApiClient {
     createVisualizationFromSearchResult: (searchResult: ISearchResult) => Promise<IVisualization>;
     deleteVisualization: (visualization: IVisualization) => Promise<void>;
     fetchVisualizations: () => Promise<IVisualization[]>

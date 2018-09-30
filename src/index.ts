@@ -1,4 +1,3 @@
-export * from './IMercurioApi';
-export * from './MercurioApi';
-export * from './MockMercurioApi';
+export * from './IMercurioApiClient';
+export * from './MercurioApiClient';
 export * from './SearchQuery';

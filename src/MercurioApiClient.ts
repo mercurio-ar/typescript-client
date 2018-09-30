@@ -2,12 +2,12 @@ import { IVisualization } from '@mercurio-ar/model';
 
 import { AxiosInstance } from 'axios';
 
-import querystring from 'querystring';
+import * as querystring from 'querystring';
 
-import { IMercurioApi, ISearchQuery, ISearchResult } from './';
+import { IMercurioApiClient, ISearchQuery, ISearchResult } from './';
 
 
-export class MercurioApi implements IMercurioApi {
+export class MercurioApiClient implements IMercurioApiClient {
 
     constructor(private http: AxiosInstance) { }
 
@@ -18,11 +18,8 @@ export class MercurioApi implements IMercurioApi {
     }
 
     public deleteVisualization(visualization: IVisualization): Promise<void> {
-        return this.http.delete(this.visualizationEndpoint(), {
-            data: {
-                visualization
-            }
-        }).then(axiosResponse => axiosResponse.data);
+        return this.http.delete(this.visualizationEndpoint(visualization))
+            .then(axiosResponse => axiosResponse.data);
     }
 
     public fetchVisualizations(): Promise<IVisualization[]> {
@@ -44,7 +41,7 @@ export class MercurioApi implements IMercurioApi {
 
     private visualizationEndpoint(visualization?: IVisualization) {
         let path = '/visualizations'
-        if(visualization){
+        if (visualization) {
             path = `${path}/${visualization.id}`;
         }
         return path
